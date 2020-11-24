@@ -37,10 +37,17 @@ public abstract class Task {
         taskMode = mode;
     }
 
+    //需要实现的抽象方法
+
     /**
      * <p>
      *     任务起始点
      * </p>
      */
     public abstract void event();
+
+    //get & set
+    public int getTaskMode() {
+        return taskMode;
+    }
 }
