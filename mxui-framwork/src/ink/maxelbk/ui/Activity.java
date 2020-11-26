@@ -4,10 +4,15 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Activity extends JFrame {
+
     //动画线程
     private final AnimationThread animationThread = new AnimationThread(this);
     //死循环线程
-
+    private final Thread whileThread = new Thread(() -> {
+        while(true) {
+            //TODO 获取鼠标位置并触发事件
+        }
+    });
 
     //窗口元素
     private Panel panel; //面板容器
@@ -37,6 +42,10 @@ public class Activity extends JFrame {
     //get & set
     public AnimationThread getAnimationThread() {
         return animationThread;
+    }
+    public void chPanel(Panel panel) {
+        //TODO 切换面板容器
+        this.panel = panel;
     }
 
 }
