@@ -1,5 +1,6 @@
 package ink.maxelbk.ui.task;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -31,6 +32,19 @@ public class TaskThread {
         } else {
             thread.start();
         }
+    }
+
+    //添加任务
+    public void addTask(Task task) {
+        tasks.add(task);
+    }
+    public void addTask(Task... tasks) {
+        this.tasks.addAll(Arrays.asList(tasks));
+    }
+
+    //get & set
+    public int getTasksNumber() {
+        return tasks.size();
     }
 
 }

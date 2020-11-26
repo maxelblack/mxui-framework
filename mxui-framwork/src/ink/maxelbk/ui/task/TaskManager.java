@@ -25,7 +25,26 @@ public final class TaskManager {
         }
     }
     private static void runTask_LINE(Task task) {
-        //TODO 独立任务队列线程执行任务
+        //独立任务队列线程执行任务
+        if(threads.isEmpty() || threads.size() < maxThreadsNumber) {
+            TaskThread thread = new TaskThread();
+            thread.addTask(task);
+            threads.add(thread);
+            thread.activate();
+        } else {
+            int i = 0;
+            TaskThread thread = threads.get(i);
+            int m = thread.getTasksNumber();
+            for (i++; i < maxThreadsNumber; i++) {
+                TaskThread thread1 = threads.get(i);
+                int n = thread1.getTasksNumber();
+                if(n < m) {
+                    m = n;
+                    thread = thread1;
+                }
+            }
+            thread.addTask(task);
+        }
     }
     private static void runTask_CURRENT_THREAD(Task task) {
         //当前线程执行任务
