@@ -52,7 +52,7 @@ public final class TaskManager {
     }
     private static void runTask_NEW_THREAD(Task task) {
         //新线程执行任务
-        new Thread(task::event).start();
+        new Thread(task::event, "MX-UI Task Runner").start();
     }
 
     //get & set

@@ -8,7 +8,7 @@ public class TaskThread {
     //任务列表
     private final List<Task> tasks = new LinkedList<>();
     //Thread对象
-    private final Thread thread = new Thread(this::runEvent);
+    private final Thread thread = new Thread(this::runEvent, "MX-UI Task Runner");
 
     //run方法
     private void runEvent() {

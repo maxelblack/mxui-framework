@@ -5,7 +5,7 @@ package ink.maxelbk.ui.task;
  * <h3>任务处理类</h3>
  * <p>
  *     MX-UI框架中用于代替事件监听器 Listener 的机制。
- *     可以完全实现事件监听器的功能，并能够简单实现异步任务机制，从根本避免任务卡住界面导致“未响应”问题等。
+ *     可以完全实现事件监听器的功能，并能够简单实现异步任务，从根本避免耗时任务卡住界面导致“未响应”问题等。
  * </p>
  */
 public abstract class Task {
@@ -24,7 +24,7 @@ public abstract class Task {
      * </p>
      */
     public Task() {
-        taskMode = TASK_MODE_LINE;
+        taskMode = TASK_MODE_CURRENT_THREAD;
     }
 
     /**
