@@ -10,6 +10,7 @@ public class Panel extends View {
 
     //add
     public void add(View view) {
+        view.father = this.father;
         viewList.add(view);
     }
 

@@ -4,30 +4,37 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Activity extends JFrame {
-
     //动画线程
     private final AnimationThread animationThread = new AnimationThread(this);
     //死循环线程
     private final Thread whileThread = new Thread(() -> {
         while(true) {
-            //TODO 获取鼠标位置并触发事件
+            //TODO 鼠标位置事件
         }
     });
+
+    //基础Panel
+    JPanel basicPanel = new JPanel() {
+        @Override
+        public void paint(Graphics g) {
+            Graphics2D graphics = (Graphics2D) g;
+            panel.paint(graphics);
+        }
+    };
 
     //窗口元素
     private Panel panel; //面板容器
 
     //初始化方法
     public Activity(Panel panel) {
+        panel.father = this;
         this.panel = panel;
-
+        add(basicPanel);
     }
 
-    //重写paint()
-    @Override
-    public void paint(Graphics g) {
-        Graphics2D graphics = (Graphics2D) g;
-        panel.paint(graphics);
+    //增加无参数update()
+    public void update() {
+        super.update(getGraphics());
     }
     //重写setVisible()
     @Override
@@ -44,8 +51,9 @@ public class Activity extends JFrame {
         return animationThread;
     }
     public void chPanel(Panel panel) {
-        //TODO 切换面板容器
+        panel.father = this;
         this.panel = panel;
+        //TODO 切换面板容器事件
     }
 
 }

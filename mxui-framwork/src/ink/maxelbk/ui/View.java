@@ -3,6 +3,9 @@ package ink.maxelbk.ui;
 import java.awt.*;
 
 public abstract class View {
+    //父窗口
+    protected Activity father;
+
     //属性项
     protected int px = 0, py = 0; //父容器位置
     private int x = 0, y = 0; //绝对位置
@@ -26,6 +29,7 @@ public abstract class View {
     public void onClicked() {}
     public void onLongClicked() {}
     public void onKeyClicked() {}
+    public void onKeyLongClicked() {}
     public void onKeyPressed() {}
     public void onKeyReleased() {}
 
@@ -39,4 +43,9 @@ public abstract class View {
 
     //绘图
     public abstract void paint(Graphics2D g);
+
+    //get
+    public Activity getFather() {
+        return father;
+    }
 }
