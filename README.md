@@ -1,7 +1,7 @@
-# MX-UI.framwork
+# MX-UI.framework
 
-整个 MX-UI 项目的基础框架
+基于Swing的GUI应用框架, 同时是整个 MX-UI 项目的基础
 
 ## 关于MX-UI项目
 
-一个 Java GUI 框架，为 Java 程序提供通用的轻量级现代化用户界面，详见[此处](https://maxelblack.github.io/docs/mxui)
+MX-UI 是一个 Java 桌面应用框架, 可以简化 Java 桌面应用程序的开发, 详见[此处](https://maxelblack.github.io/docs/mxui)
