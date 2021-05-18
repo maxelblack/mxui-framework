@@ -8,20 +8,21 @@ public class TaskThread {
     //任务列表
     private final List<Task> tasks = new LinkedList<>();
     //Thread对象
-    private final Thread thread = new Thread(this::runEvent, "MX-UI Task Runner");
+    private final Thread thread = new Thread(this::runEvent);
 
     //run方法
     private void runEvent() {
-        for(;;) {
-            if (tasks.isEmpty()) {
-                try {
-                    thread.wait();
-                } catch (Exception e) {
-                    e.printStackTrace();
+        synchronized (thread) {
+        	thread.setName("TaskThread:Line@" + thread.getId());
+            for (;;) {
+                if (tasks.isEmpty()) try {
+                	thread.wait();
+                } catch (InterruptedException e) {
+                	e.printStackTrace();
                 }
+                tasks.get(0).event();
+                tasks.remove(0);
             }
-            tasks.get(0).event();
-            tasks.remove(0);
         }
     }
 
@@ -38,12 +39,12 @@ public class TaskThread {
     public void addTask(Task task) {
         tasks.add(task);
     }
-    public void addTask(Task... tasks) {
+    public void addTasks(Task... tasks) {
         this.tasks.addAll(Arrays.asList(tasks));
     }
 
     //get & set
-    public int getTasksNumber() {
+    public int countTasks() {
         return tasks.size();
     }
 

@@ -10,9 +10,9 @@ package ink.maxelbk.ui.task;
  */
 public abstract class Task {
     //模式选择常量
-    public final static int TASK_MODE_LINE = 0;
-    public final static int TASK_MODE_CURRENT_THREAD = 1;
-    public final static int TASK_MODE_NEW_THREAD = 2;
+    public final static int MODE_LINE = 0;
+    public final static int MODE_CURRENT_THREAD = 1;
+    public final static int MODE_NEW_THREAD = 2;
 
     private final int taskMode;
 
@@ -24,7 +24,7 @@ public abstract class Task {
      * </p>
      */
     public Task() {
-        taskMode = TASK_MODE_CURRENT_THREAD;
+        taskMode = MODE_CURRENT_THREAD;
     }
 
     /**

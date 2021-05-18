@@ -13,13 +13,13 @@ public final class TaskManager {
     //执行任务
     public static void runTask(Task task) {
         switch (task.getTaskMode()) {
-            case Task.TASK_MODE_LINE:
+            case Task.MODE_LINE:
                 runTask_LINE(task);
                 break;
-            case Task.TASK_MODE_CURRENT_THREAD:
+            case Task.MODE_CURRENT_THREAD:
                 runTask_CURRENT_THREAD(task);
                 break;
-            case Task.TASK_MODE_NEW_THREAD:
+            case Task.MODE_NEW_THREAD:
                 runTask_NEW_THREAD(task);
                 break;
         }
@@ -34,10 +34,10 @@ public final class TaskManager {
         } else {
             int i = 0;
             TaskThread thread = threads.get(i);
-            int m = thread.getTasksNumber();
+            int m = thread.countTasks();
             for (i++; i < maxThreadsNumber; i++) {
                 TaskThread thread1 = threads.get(i);
-                int n = thread1.getTasksNumber();
+                int n = thread1.countTasks();
                 if(n < m) {
                     m = n;
                     thread = thread1;
@@ -52,7 +52,9 @@ public final class TaskManager {
     }
     private static void runTask_NEW_THREAD(Task task) {
         //新线程执行任务
-        new Thread(task::event, "MX-UI Task Runner").start();
+        Thread t = new Thread(task::event);
+        t.start();
+        t.setName("TaskThread:New@" + t.getId());
     }
 
     //get & set
